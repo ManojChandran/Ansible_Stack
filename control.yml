@@ -1,0 +1,9 @@
+---  # all ansible playbook should start with "---"
+- hosts: control
+  become: true # asking Ansible to be Root user
+  tasks:
+    - name: install utils
+      # module apt is equivalent to apt-get
+      apt: name={{item}} state=present update_cache=yes
+      with_item:
+        - curl

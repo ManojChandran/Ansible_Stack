@@ -1,0 +1,12 @@
+--- # all ansible playbook should start with "---"
+- hosts: database
+  become: true # asking Ansible to be Root user
+  tasks:
+    - name: install mysql-server
+      # module apt is equivalent to apt-get
+      apt: name=mysql-server state=present update_cache=yes
+
+      # enabled represent start at system start up
+      # state represent running state of the service
+    - name: ensure mysql started
+      service: name=mysql state=started enabled=yes
